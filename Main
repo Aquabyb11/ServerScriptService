@@ -1,0 +1,20 @@
+local mob = require(script.Mob)
+local map = workspace.Grassland
+
+for wave=1, 5 do
+	print("WAVE STARTING:", wave)
+	if wave < 5 then
+		mob.Spawn("Slow Zombie", 3 * wave, map)
+		mob.Spawn("Fast Zombie", 3 * wave, map)
+		mob.Spawn("Normal Zombie", 3 * wave, map)
+	elseif wave == 5 then
+		mob.Spawn("Normal Zombie", 100, map)
+	end
+	
+	repeat
+		task.wait(1)
+	until #workspace.Mobs:GetChildren() == 0
+	
+	print("WAVE ENDED")
+	task.wait(1)
+endw
